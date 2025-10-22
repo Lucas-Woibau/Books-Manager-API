@@ -1,16 +1,9 @@
-using GerenciamentoBiblioteca.Core.Entities;
-using GerenciamentoBiblioteca.Infrasctruct.Persistance;
 using GerenciamentoBiblioteca.Application.Services;
-using Microsoft.EntityFrameworkCore;
+using GerenciamentoBiblioteca.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("BibliotecaCs");
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(connectionString);
-});
+builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddScoped<ILivroService, LivroService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();

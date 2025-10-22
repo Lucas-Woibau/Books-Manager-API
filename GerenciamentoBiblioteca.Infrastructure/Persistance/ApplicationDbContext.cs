@@ -1,7 +1,7 @@
 ﻿using GerenciamentoBiblioteca.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GerenciamentoBiblioteca.Infrasctruct.Persistance
+namespace GerenciamentoBiblioteca.Infrastructure.Persistance
 {
     public class ApplicationDbContext : DbContext
     {
