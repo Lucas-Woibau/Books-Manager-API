@@ -1,12 +1,11 @@
 ﻿using GerenciamentoBiblioteca.Application.Models;
 using GerenciamentoBiblioteca.Application.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciamentoBiblioteca.API.Controllers
 {
-    [Route("api/v1/[controller]")]
     [ApiController]
+    [Route("api/v1/[controller]")]
     public class EmprestimoController : ControllerBase
     {
         private readonly IEmprestimoService _service;

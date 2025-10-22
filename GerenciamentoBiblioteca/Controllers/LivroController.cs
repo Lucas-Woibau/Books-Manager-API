@@ -9,6 +9,7 @@ namespace GerenciamentoBiblioteca.API.Controllers
     public class LivroController : Controller
     {
         private readonly ILivroService _service;
+
         public LivroController(ILivroService service)
         {
             _service = service;
