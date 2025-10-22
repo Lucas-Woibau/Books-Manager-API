@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciamentoBiblioteca.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class EmprestimoController : ControllerBase
     {

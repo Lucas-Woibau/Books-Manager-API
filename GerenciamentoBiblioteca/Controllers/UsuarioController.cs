@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GerenciamentoBiblioteca.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _service;
