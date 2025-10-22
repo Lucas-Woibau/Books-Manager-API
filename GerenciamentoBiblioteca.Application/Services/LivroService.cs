@@ -2,7 +2,7 @@
 using GerenciamentoBiblioteca.Application.Models;
 using GerenciamentoBiblioteca.Core.Entities;
 using GerenciamentoBiblioteca.Core.Enums;
-using GerenciamentoBiblioteca.Infrasctruct.Persistance;
+using GerenciamentoBiblioteca.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
 namespace GerenciamentoBiblioteca.Application.Services
