@@ -2,12 +2,12 @@
 
 namespace GerenciamentoBiblioteca.Application.Models
 {
-    public class CreateUsuarioInputModel
+    public class CreateUserInputModel
     {
-        public string? Nome { get; set; }
+        public string? Name { get; set; }
         public string? Email { get; set; }
 
-        public Usuario ToEntity()
-            => new(Nome, Email);
+        public User ToEntity()
+            => new(Name, Email);
     }
 }

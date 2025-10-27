@@ -6,11 +6,11 @@ namespace GerenciamentoBiblioteca.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class UsuarioController : Controller
+    public class UserController : Controller
     {
-        private readonly IUsuarioService _service;
+        private readonly IUserService _service;
 
-        public UsuarioController(IUsuarioService service)
+        public UserController(IUserService service)
         {
             _service = service;
         }
@@ -32,7 +32,7 @@ namespace GerenciamentoBiblioteca.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateUsuarioInputModel model)
+        public async Task<IActionResult> Post(CreateUserInputModel model)
         {
             var result = await _service.CreateAsync(model);
 
@@ -43,7 +43,7 @@ namespace GerenciamentoBiblioteca.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(UpdateUsuarioInputModel model)
+        public async Task<IActionResult> Put(UpdateUserInputModel model)
         {
             var result = await _service.UpdateAsync(model);
 

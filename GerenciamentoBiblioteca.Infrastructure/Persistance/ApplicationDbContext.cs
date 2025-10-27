@@ -9,37 +9,37 @@ namespace GerenciamentoBiblioteca.Infrastructure.Persistance
         {
         }
 
-        public DbSet<Livro> Livros { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Emprestimo> Emprestimos { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Lending> Lendings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .Entity<Livro>(e =>
+                .Entity<Book>(e =>
             {
                 e.HasKey(l => l.Id);
             });
 
             builder
-                .Entity<Usuario>(e =>
+                .Entity<User>(e =>
             {
                 e.HasKey(u => u.Id);
             });
 
             builder
-                .Entity<Emprestimo>(e =>
+                .Entity<Lending>(e =>
                 {
                     e.HasKey(e => e.Id);
 
-                    e.HasOne(e => e.Livro)
+                    e.HasOne(e => e.Book)
                         .WithMany()
-                        .HasForeignKey(e => e.IdLivro)
+                        .HasForeignKey(e => e.IdBook)
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    e.HasOne(e => e.Usuario)
+                    e.HasOne(e => e.User)
                         .WithMany()
-                        .HasForeignKey(e => e.IdUsuario)
+                        .HasForeignKey(e => e.IdUser)
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

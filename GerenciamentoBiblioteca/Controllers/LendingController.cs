@@ -6,11 +6,11 @@ namespace GerenciamentoBiblioteca.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class LivroController : Controller
+    public class LendingController : ControllerBase
     {
-        private readonly ILivroService _service;
+        private readonly ILendingService _service;
 
-        public LivroController(ILivroService service)
+        public LendingController(ILendingService service)
         {
             _service = service;
         }
@@ -26,33 +26,31 @@ namespace GerenciamentoBiblioteca.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = _service.GetByIdAsync(id);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateLivroInputModel model)
+        public async Task<IActionResult> Post(CreateLendingInputModel model)
         {
             var result = await _service.CreateAsync(model);
 
-            if (!result.IsSuccess) 
+            if (!result.IsSuccess)
                 return BadRequest(result.Message);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, model);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Put(UpdateLivroInputModel model)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, UpdateLendingInputModel model)
         {
-            var result = await _service.UpdateAsync(model);
+            var result = await _service.Update(id,model);
 
-            if(!result.IsSuccess)
-            {
-                return BadRequest(result.Message);
-            }
+            if (!result.IsSuccess)
+                return BadRequest(result);
 
-            return Ok();
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
@@ -60,12 +58,18 @@ namespace GerenciamentoBiblioteca.API.Controllers
         {
             var result = await _service.DeleteAsync(id);
 
-            if (!result.IsSuccess)
-            {
-                return BadRequest(result.Message);
-            }
-
             return Ok();
+        }
+
+        [HttpPut("{id}/return")]
+        public async Task<IActionResult> Put(int id)
+        {
+            var result = await _service.ReturnAsync(id);
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }
