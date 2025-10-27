@@ -2,12 +2,16 @@
 {
     public class Emprestimo : BaseEntity
     {
-        public Emprestimo() { }
-        public Emprestimo(int idUsuario, int idLivro)
+        public Emprestimo()
+        {
+
+        }
+        public Emprestimo(int idUsuario, int idLivro, DateTime dataDevolucao)
             : base()
         {
             IdUsuario = idUsuario;
             IdLivro = idLivro;
+            DataDevolucao = dataDevolucao;
 
             DataEmprestimo = DateTime.Now;
         }
@@ -27,12 +31,20 @@
         public void Devolver()
         {
             DataDevolucao = DateTime.Now;
+
+            VerificarAtraso();
         }
 
-        public void Update(int idUsuario,int idLivro)
+        private void VerificarAtraso()
+        {
+            
+        }
+
+        public void Update(int idUsuario,int idLivro, DateTime dataDevolucao)
         {
             IdUsuario = idUsuario;
             IdLivro = idLivro;
+            DataDevolucao = dataDevolucao;
         }
     }
 }

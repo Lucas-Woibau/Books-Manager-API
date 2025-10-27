@@ -68,6 +68,21 @@ namespace GerenciamentoBiblioteca.Application.Services
             return ResultViewModel<int>.Success(emprestimo.Id);
         }
 
+        public async Task<ResultViewModel> Update(UpdateEmprestimoInputModel model)
+        {
+            var emprestimo = await _context.Emprestimos.SingleOrDefaultAsync(l => l.Id == model.IdEmprestimo);
+
+            if (emprestimo == null)
+            {
+                return ResultViewModel<EmprestimoViewModel>.Error("Emprestimo não encontrado.");
+            }
+
+            emprestimo.Update(model.IdUser, model.IdLivro, model.DataDevolucao);
+            await _context.SaveChangesAsync();
+
+            return ResultViewModel.Success();
+        }
+
         public async Task<ResultViewModel> DeleteAsync(int id)
         {
             var emprestimo = await _context.Emprestimos.SingleOrDefaultAsync(l => l.Id == id);
@@ -96,7 +111,7 @@ namespace GerenciamentoBiblioteca.Application.Services
                 return ResultViewModel.Error("Este empréstimo já foi devolvido.");
 
             emprestimo.Devolver();
-            emprestimo.Livro.SetarDisponivel(); 
+            emprestimo.Livro.SetarDisponivel();
 
             await _context.SaveChangesAsync();
 

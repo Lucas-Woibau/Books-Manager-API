@@ -42,6 +42,17 @@ namespace GerenciamentoBiblioteca.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, model);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Put(UpdateEmprestimoInputModel model)
+        {
+            var result = await _service.Update(model);
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

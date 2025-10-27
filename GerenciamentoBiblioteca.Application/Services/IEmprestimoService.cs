@@ -12,6 +12,7 @@ namespace GerenciamentoBiblioteca.Application.Services
         Task<ResultViewModel<List<EmprestimoItemViewModel>>> GetAllAsync();
         Task<ResultViewModel<EmprestimoViewModel>> GetByIdAsync(int id);
         Task<ResultViewModel<int>> CreateAsync(CreateEmprestimoInputModel model);
+        Task<ResultViewModel> Update(UpdateEmprestimoInputModel model);
         Task<ResultViewModel> DevolverAsync(int id);
         Task<ResultViewModel> DeleteAsync(int id);
     }
