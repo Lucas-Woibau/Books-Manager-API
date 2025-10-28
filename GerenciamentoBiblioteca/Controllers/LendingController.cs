@@ -26,7 +26,7 @@ namespace GerenciamentoBiblioteca.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = _service.GetByIdAsync(id);
+            var result = await _service.GetByIdAsync(id);
 
             return Ok(result);
         }

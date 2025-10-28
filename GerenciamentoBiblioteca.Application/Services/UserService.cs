@@ -15,49 +15,49 @@ namespace GerenciamentoBiblioteca.Application.Services
 
         public async Task<ResultViewModel<List<UserItemViewModel>>> GetAllAsync()
         {
-            var usuarios = await _context.Users
+            var users = await _context.Users
                 .ToListAsync();
 
-            var model = usuarios.Select(UserItemViewModel.FromEntity).ToList();
+            var model = users.Select(UserItemViewModel.FromEntity).ToList();
 
             return ResultViewModel<List<UserItemViewModel>>.Success(model);
         }
 
         public async Task<ResultViewModel<UserViewModel>> GetByIdAsync(int id)
         {
-            var usuario = await _context.Users
+            var user = await _context.Users
                 .SingleOrDefaultAsync(u => u.Id == id);
 
-            if (usuario == null)
+            if (user == null)
             {
                 return ResultViewModel<UserViewModel>.Error("User not found.");
             }
 
-            var model = UserViewModel.FromEntity(usuario);
+            var model = UserViewModel.FromEntity(user);
 
             return ResultViewModel<UserViewModel>.Success(model);
         }
 
         public async Task<ResultViewModel<int>> CreateAsync(CreateUserInputModel model)
         {
-            var usuario = model.ToEntity();
+            var user = model.ToEntity();
 
-            await _context.AddAsync(usuario);
+            await _context.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            return ResultViewModel<int>.Success(usuario.Id);
+            return ResultViewModel<int>.Success(user.Id);
         }
 
         public async Task<ResultViewModel> UpdateAsync(UpdateUserInputModel model)
         {
-            var usuario = await _context.Users.SingleOrDefaultAsync(u => u.Id == model.IdUser);
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == model.IdUser);
 
-            if (usuario == null)
+            if (user == null)
             {
                 return ResultViewModel.Error("User not found.");
             }
 
-            usuario.Update(model.Name, model.Email);
+            user.Update(model.Name, model.Email);
             await _context.SaveChangesAsync();
 
             return ResultViewModel.Success();
@@ -65,14 +65,14 @@ namespace GerenciamentoBiblioteca.Application.Services
 
         public async Task<ResultViewModel> DeleteAsync(int id)
         {
-            var usuario = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
 
-            if (usuario == null)
+            if (user == null)
             {
                 return ResultViewModel.Error("User not found.");
             }
 
-            _context.Users.Remove(usuario);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return ResultViewModel.Success();

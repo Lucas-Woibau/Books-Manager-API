@@ -14,49 +14,49 @@ namespace GerenciamentoBiblioteca.Application.Services
         }
         public async Task<ResultViewModel<List<BookItemViewModel>>> GetAllAsync()
         {
-            var livros = await _context.Books
+            var books = await _context.Books
                 .Where(l => !l.IsDeleted)
                 .ToListAsync();
 
-            var model = livros.Select(BookItemViewModel.FromEntity).ToList();
+            var model = books.Select(BookItemViewModel.FromEntity).ToList();
 
             return ResultViewModel<List<BookItemViewModel>>.Success(model);
         }
 
         public async Task<ResultViewModel<int>> CreateAsync(CreateBookInputModel model)
         {
-            var livro = model.ToEntity();
+            var book = model.ToEntity();
 
-            await _context.AddAsync(livro);
+            await _context.AddAsync(book);
             await _context.SaveChangesAsync();
 
-            return ResultViewModel<int>.Success(livro.Id);
+            return ResultViewModel<int>.Success(book.Id);
         }
 
         public async Task<ResultViewModel<BookViewModel>> GetByIdAsync(int id)
         {
-            var livro = await _context.Books.SingleOrDefaultAsync(l => l.Id == id);
+            var book = await _context.Books.SingleOrDefaultAsync(l => l.Id == id);
 
-            if (livro == null)
+            if (book == null)
             {
                 return ResultViewModel<BookViewModel>.Error("Book not found.");
             }
 
-            var model = BookViewModel.FromEntity(livro);
+            var model = BookViewModel.FromEntity(book);
 
             return ResultViewModel<BookViewModel>.Success(model);
         }
 
         public async Task<ResultViewModel> UpdateAsync(UpdateBookInputModel model)
         {
-            var livro = await _context.Books.SingleOrDefaultAsync(l => l.Id == model.IdBook);
+            var book = await _context.Books.SingleOrDefaultAsync(l => l.Id == model.IdBook);
 
-            if (livro == null)
+            if (book == null)
             {
                 return ResultViewModel.Error("Book not found.");
             }
 
-            livro.Update(model.Title, model.Author, model.ISBN, model.PublicationYear);
+            book.Update(model.Title, model.Author, model.ISBN, model.PublicationYear);
             await _context.SaveChangesAsync();
 
             return ResultViewModel.Success();
@@ -64,14 +64,14 @@ namespace GerenciamentoBiblioteca.Application.Services
 
         public async Task<ResultViewModel> DeleteAsync(int id)
         {
-            var livro = await _context.Books.SingleOrDefaultAsync(l => l.Id == id);
+            var book = await _context.Books.SingleOrDefaultAsync(l => l.Id == id);
 
-            if (livro == null)
+            if (book == null)
             {
                 return ResultViewModel.Error("Book not found.");
             }
 
-            livro.SetAsDeleted();
+            book.SetAsDeleted();
             await _context.SaveChangesAsync();
 
             return ResultViewModel.Success();
