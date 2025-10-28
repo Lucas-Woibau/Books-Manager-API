@@ -18,7 +18,7 @@ namespace GerenciamentoBiblioteca.Infrastructure
 
         public static IServiceCollection AddData(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("BibliotecaCs");
+            var connectionString = configuration.GetConnectionString("LibraryCs");
 
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(connectionString));

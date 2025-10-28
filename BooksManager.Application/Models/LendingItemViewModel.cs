@@ -18,7 +18,6 @@ namespace GerenciamentoBiblioteca.Application.Models
         public DateTime? LendingDate { get; private set; }
         public DateTime? ExpectedReturnDate { get; private set; }
         public DateTime? ReturnDate { get; private set; }
-
         public static LendingItemViewModel FromEntity(Lending entity)
             => new(entity.User.Name, entity.Book.Title, entity?.LendingDate, entity?.ExpectedReturnDate, entity?.ReturnDate);
     }

@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GerenciamentoBiblioteca.Core\GerenciamentoBiblioteca.Core.csproj" />
+    <ProjectReference Include="..\BooksManager.Core\BooksManager.Core.csproj" />
   </ItemGroup>
 
 </Project>

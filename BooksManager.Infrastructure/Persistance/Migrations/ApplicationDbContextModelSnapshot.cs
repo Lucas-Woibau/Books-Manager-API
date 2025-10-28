@@ -45,8 +45,9 @@ namespace GerenciamentoBiblioteca.Infrastructure.Persistance.Migrations
                     b.Property<int>("PublicationYear")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

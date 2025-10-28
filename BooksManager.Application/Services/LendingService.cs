@@ -28,7 +28,10 @@ namespace GerenciamentoBiblioteca.Application.Services
 
         public async Task<ResultViewModel<LendingViewModel>> GetByIdAsync(int id)
         {
-            var lendings = await _context.Lendings.SingleOrDefaultAsync(e => e.Id == id);
+            var lendings = await _context.Lendings
+                .Include(e => e.User)
+                .Include(e => e.Book)
+                .SingleOrDefaultAsync(e => e.Id == id);
 
             if (lendings == null)
             {

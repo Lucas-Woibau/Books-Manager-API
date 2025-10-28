@@ -1,13 +1,11 @@
-using GerenciamentoBiblioteca.Application.Services;
+using BooksManager.Application;
 using GerenciamentoBiblioteca.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructure(builder.Configuration);
-
-builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ILendingService, LendingService>();
+builder.Services
+    .AddApplication()
+    .AddInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

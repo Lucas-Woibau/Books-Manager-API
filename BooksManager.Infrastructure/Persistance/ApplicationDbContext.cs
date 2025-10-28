@@ -19,6 +19,9 @@ namespace GerenciamentoBiblioteca.Infrastructure.Persistance
                 .Entity<Book>(e =>
             {
                 e.HasKey(l => l.Id);
+
+                e.Property(l => l.Status)
+                .HasConversion<string>();
             });
 
             builder
@@ -32,14 +35,14 @@ namespace GerenciamentoBiblioteca.Infrastructure.Persistance
                 {
                     e.HasKey(e => e.Id);
 
-                    e.HasOne(e => e.Book)
-                        .WithMany()
-                        .HasForeignKey(e => e.IdBook)
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     e.HasOne(e => e.User)
                         .WithMany()
                         .HasForeignKey(e => e.IdUser)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    e.HasOne(e => e.Book)
+                        .WithMany()
+                        .HasForeignKey(e => e.IdBook)
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

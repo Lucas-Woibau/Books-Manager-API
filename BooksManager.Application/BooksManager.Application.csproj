@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GerenciamentoBiblioteca.Core\GerenciamentoBiblioteca.Core.csproj" />
-    <ProjectReference Include="..\GerenciamentoBiblioteca.Infrastructure\GerenciamentoBiblioteca.Infrastructure.csproj" />
+    <ProjectReference Include="..\BooksManager.Core\BooksManager.Core.csproj" />
+    <ProjectReference Include="..\BooksManager.Infrastructure\BooksManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

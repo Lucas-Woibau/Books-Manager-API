@@ -2,7 +2,7 @@
 {
     public enum BookStatus
     {
-        Available = 0,
-        Unavailable = 1,
+        Available,
+        Unavailable,
     }
 }
